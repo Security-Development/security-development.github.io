@@ -20,8 +20,13 @@ imageshadow: true
 **발급받은 CVE**<br/>
 > CVE-2023-44144 
 
-**수상 내역**<br/>
-
-
+**대회 경험**<br/>
+> NWWTHW팀 소속 CCE 2022 CTF - 본선 진출
+> NWWTHW팀 소속 WhiteHat Contest 2022 CTF - 본선 진출
+> NWWTHW팀 소속 The HackingChampiunship Junior 2022 CTF - 본선 진출(장려상)
+> NWWTHW팀 소속 JBU 2022 CTF 8위(장려상)
+> Stealien팀 소속 Hack The Box Business CTF 2023 18위
+> 부대찌개팀 소속 Defcon Qualifier 2023 24위
+> 어디에도팀 소속 HackingCamp 27회 2023 CTF 1위
 
 
