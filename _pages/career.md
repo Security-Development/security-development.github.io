@@ -9,13 +9,15 @@ imageshadow: true
 
 **학업**<br/>
 > <img src="/assets/images/hansei_logo.png" width="40px" alt="Hansei Logo"><br/>
-> 재학 기간 :  2020 ~ 2022
+> 소속 : 해킹보안과
+> 재학 기간 : 2020부터 2022 까지
 
 **직장**<br/>
 > <img src="/assets/images/stealien_logo.png" width="70px" alt="Stealien Logo"><br/>
-> 근무 기간 : 2022-09-27 ~ Present
+> 소속 : AppSuit팀
+> 근무 기간 : 2022-09-27부터 현재까지
 
-**발급 CVE**<br/>
+**발급받은 CVE**<br/>
 > CVE-2023-44144 
 
 
