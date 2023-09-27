@@ -1,16 +1,16 @@
 # Site
-name: "Memoirs"
-title: "Memoirs"
+name: "Blog"
+title: "Blog"
 description: "Hello, Everyone! I'm Seungyong Lee, and I joined the AppSuit team at Steelian, a prominent security company in South Korea, on September 27, 2022. I'm delighted to be part of this team of talented individuals. This blog is a space where I share my experiences and explore fascinating technologies I've encountered along the way. Join me as we navigate the world of cybersecurity and innovation together. Stay tuned for updates as we embark on this adventure!"
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 baseurl: /
 google_analytics: 'UA-xxxxxxxx-1'
 disqus: 'demowebsite'
-mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
+mailchimp-list: ''
 include: ["_pages"]
 permalink: /:title/
-email: wowthemesnet@gmail.com
+email: dltmddyd645@gmail.com
 
 # Authors
 authors:
