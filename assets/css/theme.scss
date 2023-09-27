@@ -448,6 +448,7 @@ img, img:hover {
     p {
         margin-top:30px;
         margin-bottom:30px;
+        font-size: 16px;
     }
     code {
         font-size: 15px;
@@ -739,5 +740,8 @@ body.active-side {
         max-height: 50px;
         margin-bottom: 10px;
         margin-top: -40px;
+    }
+    .article-post p {
+        font-size: 5px;
     }
 }
