@@ -35,6 +35,13 @@ img {
 h1,h2,h3,h4,h5,h6 {
     font-weight:700;
 }
+
+@media (min-width: 1200px) {
+    h4 {
+        font-size: 12px;
+    }
+}
+
 .site-content {
     padding-top:50px;
 }
@@ -627,7 +634,7 @@ body.active-side {
         grid-template-columns: 1fr 1fr;
     }
     .newsletter img.newsletter-logo {
-        max-height: 50px;
+        max-height: 30px;
         float: left;
     }
 }
@@ -710,10 +717,7 @@ body.active-side {
             width: 170px;
         }
     }
-    .article-post, .entry-header, .comments, .rating, .authorbox { 
-        padding-left:0;
-        padding-right:0;
-    }
+
     blockquote {
         margin-left:15px;
         font-size:18px;
