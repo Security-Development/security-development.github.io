@@ -19,7 +19,10 @@ authors:
     avatar: 'assets/images/avatar.png'
     email: "dltmddyd645@gmail.com"
     web: "http://github.com/security-development"
-    description: "I'm Seungyong Lee, and I joined the AppSuit team at Stealien, a  security company in South Korea, on September 27, 2022. <br/>I'm delighted to be part of this team of talented individuals. This blog is a space where I share my experiences and explore fascinating technologies I've encountered along the way. Join me as we navigate the world of cybersecurity and innovation together. <br/>Your interest and support mean the world to me. Stay tuned for updates as we embark on this adventure!"
+    description: "
+    <span>I'm Seungyong Lee, and I joined the AppSuit team at Stealien, a  security company in South Korea, on September 27, 2022. </span><br/>
+    <span>I'm delighted to be part of this team of talented individuals. This blog is a space where I share my experiences and explore fascinating technologies I've encountered along the way. Join me as we navigate the world of cybersecurity and innovation together. </span><br/>
+    <span>Your interest and support mean the world to me. Stay tuned for updates as we embark on this adventure!"</span>
 
 
 # Plugins
