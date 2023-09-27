@@ -730,7 +730,7 @@ body.active-side {
     }
 }
 
-@media (min-width: 1200px) {
+@media (max-width: 1200px) {
     h4 {
         font-size: 12px;
     }
