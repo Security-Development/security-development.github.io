@@ -2,7 +2,7 @@
 name: "H4cker.it"
 title: "H4cker.it"
 description: "This blog is a space where I share my experiences and explore fascinating technologies I've encountered along the way. Join me as we navigate the world of cybersecurity and innovation together. Stay tuned for updates as we embark on this adventure!"
-logo: 'assets/images/logo.git'
+logo: 'assets/images/logo.gif'
 favicon: 'assets/images/logo.png'
 baseurl: /
 google_analytics: 'UA-xxxxxxxx-1'
