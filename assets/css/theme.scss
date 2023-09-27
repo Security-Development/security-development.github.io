@@ -35,6 +35,12 @@ img {
 h1,h2,h3,h4,h5,h6 {
     font-weight:700;
 }
+// menu
+.navbar-brand img {
+    max-height:80px;
+    margin-bottom:40px;
+    margin-top:40px;
+}
 
 @media (min-width: 1200px) {
     h4 {
@@ -127,12 +133,6 @@ img, img:hover {
 }
 .featured-image, .firstpage .blog-grid-item:nth-child(1), .firstpage .blog-grid-item:nth-child(2), .firstpage .blog-grid-item:nth-child(3) {
     animation: fade-up 0.7s ease-out forwards running;
-}
-// menu
-.navbar-brand img {
-    max-height:80px;
-    margin-bottom:40px;
-    margin-top:40px;
 }
 .sidebar {
     position: fixed;
