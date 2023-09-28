@@ -11,7 +11,7 @@ imageshadow: true
 > <img src="/assets/images/hansei_logo.png" width="40px" alt="Hansei Logo"><br/>
 > Major : Hacking Security Major<br/>
 > Period of enrollment : From 2020 to 2022<br/>
-> <img src="/assets/images/korea_univ_log.svg" width="82px" alt="Korea Univ Logo"><br/>
+> <img src="/assets/images/korea_univ_log.svg" width="44px" alt="Korea Univ Logo"><br/>
 > Major : Department of Information Management Security<br/>
 > Period of enrollment : From 2022 to to present
 
