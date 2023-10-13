@@ -4,7 +4,7 @@ title:  "v8!, 넌 도대체 뭐니?"
 author: "SeungYong Lee"
 categories: [principle]
 tags: [v8]
-image: https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/V8_JavaScript_engine_logo_2.svg/1200px-V8_JavaScript_engine_logo_2.svg.png
+image: assets/images/Who-are-you!.gif
 ---
 여러분, 안녕하세요!
 
