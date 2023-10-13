@@ -23,7 +23,8 @@ imageshadow: true
 **Issued CVE**<br/>
 > CVE-2023-44144 <br/>
 > CVE-2023-44474<br/>
-> CVE-2023-44245
+> CVE-2023-44245<br/>
+> CVE-2023-45759
 
 **Contest Experience**<br/>
 > Affiliated with the NWWTHW team, CCE 2022 CTF - Advance to the finals<br/>
