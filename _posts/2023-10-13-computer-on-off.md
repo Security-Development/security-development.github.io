@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "CPU야 GPU야 너네들은 무슨 일을 하니?"
+title:  "컴퓨터가 생명을 얻는 방법"
 author: "SeungYong Lee"
 categories: [principle]
 tags: [hardware]
-image: assets/images/Who-are-you!.gif
+image: assets/images/computer_wakeup.gif
 ---
 여러분, 안녕하세요!
 
