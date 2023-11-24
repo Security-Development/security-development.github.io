@@ -27,7 +27,8 @@ imageshadow: true
 > CVE-2023-45759<br/>
 > CVE-2023-46313<br/>
 > CVE-2023-46622<br/>
-> CVE-2023-47533
+> CVE-2023-47533<br/>
+> CVE-2023-48320
 
 **Contest Experience**<br/>
 > Affiliated with the NWWTHW team, CCE 2022 CTF - Advance to the finals<br/>
