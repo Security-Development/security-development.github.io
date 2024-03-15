@@ -32,7 +32,8 @@ imageshadow: true
 > CVE-2023-49176
 
 **Reporting history**
-> **Co*k : IDOR Vulnerability Report
+> **Co*k : IDOR Vulnerability Report<br/>
+> PatchStack : WordPress Plugin Vulnerability Report
 
 **Contest Experience**<br/>
 > Affiliated with the NWWTHW team, CCE 2022 CTF - Advance to the finals<br/>
@@ -42,5 +43,5 @@ imageshadow: true
 > Affiliated with the Stealien team, Hack The Box Business CTF 2023 18th<br/>
 > Affiliated with the budaejjigae team, Defcon Qualifier 2023 24th<br/>
 > Affiliated with the 어디에도 team, HackingCamp 27th 2023 CTF 1st
-
+> Affiliated with the Stealien team, Hack The Box Business CTF 2024 82th<br/>
 
