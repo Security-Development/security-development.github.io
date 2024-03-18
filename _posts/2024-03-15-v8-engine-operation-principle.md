@@ -21,10 +21,12 @@ image: assets/images/Who-are-you!.gif
 V8은 개발 당시 구글의 비밀 내부 프로젝트로써 비공개 CVS(Concurrent Versions System) 저장소에서 개발되었으나, 크롬이 출시된 2008년 9월 2일 이후 오픈소스로 전환되었습니다.
 자바스크립트의 명령어 수행 속도의 개선을 목적으로 고안되어 C++ 기반으로 만들어졌으며 JIT(Just In Time) 컴파일러를 채택했기 때문에 속도를 보장하지만, C/C++계열 특성상 개발자가 메모리를 수동으로 관리해줘야 하기 때문에 개발자의 실수로 인해 메모리 커럽션 취약점으로 이어지기도 합니다.(C/C++의 이러한 문제점으로 최근 미국 백악관에서는 메모리 안정성을 보장하는 프로그래밍 언어(Rust, etc...) 사용을 권고 했습니다.)
 
-JIT 컴파일러인 V8은 Run-Time에 JavaScript 소스코드를 파싱하여 Ignition Interperter으로 바이트 코드로 변환한다음, Turbofan Compiler으로 컴퓨터 프로세서로 직접 보낼 수 있는 기계어로 변환시키는 3단계를 거치기 때문에 최적화합니다. 게다가 기계어로 변환한 코드를 캐싱까지 하기 때문에 동일한 함수가 여러번 호출 될 때 매번 앞의 3단계를 다시 거치지 않기 때문에 속도를 향상 시켜 목적이었던 수행 속도 개선에 충족시켰습니다.
+JIT 컴파일러인 V8은 Run-Time에 JavaScript 소스코드를 파싱하여 Ignition Interpreter으로 바이트 코드로 변환한다음, Turbofan Compiler으로 컴퓨터 프로세서로 직접 보낼 수 있는 기계어로 변환시키는 3단계를 거치기 때문에 최적화합니다. 게다가 기계어로 변환한 코드를 캐싱까지 하기 때문에 동일한 명령어가 여러번 호출 될 때 매번 앞의 3단계를 다시 거치지 않기 때문에 속도를 향상 시켜 목적이었던 수행 속도 개선에 충족시켰습니다. 
+
+그렇다면 사실 인터프리터의 단점이었던 동일한 동작을 수행하는 명령어가 호출 되면 캐싱을 하지 않기 때문에 무조건 재컴파일 하는 과정으로 인한 속도 저하를 보완이 JIT 컴파일러의 역활이라고 볼수도 있습니다.
 
 JIT 컴파일의 작동 방식을 다음 다이어그램에서 확인할 수 있습니다. 
-
+![v8_jit](../assets/images/v8_jit.png)
 
 
 (작성 중,,,)
@@ -33,3 +35,4 @@ JIT 컴파일의 작동 방식을 다음 다이어그램에서 확인할 수 있
 - https://blog.bitsrc.io/secret-behind-javascript-performance-v8-hidden-classes-ba4d0ebfb89d
 - https://ko.wikipedia.org/wiki/V8_%EC%97%94%EC%A7%84
 - https://oldmachinepress.com/2016/05/28/antoinette-levavasseur-aircraft-engines/
+- https://rnfltpgus.github.io/knowledge/v8-engine/
