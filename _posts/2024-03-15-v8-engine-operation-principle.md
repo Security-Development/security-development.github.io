@@ -26,3 +26,7 @@ JIT 컴파일러는 Run-Time에 모든 JavaScript 명령어를 기계어로 변�
 
 
 (작성 중,,,)
+
+### [ Reference ]
+- https://blog.bitsrc.io/secret-behind-javascript-performance-v8-hidden-classes-ba4d0ebfb89d
+- https://ko.wikipedia.org/wiki/V8_%EC%97%94%EC%A7%84
