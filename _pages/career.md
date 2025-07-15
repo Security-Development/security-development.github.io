@@ -17,8 +17,9 @@ imageshadow: true
 
 **Workplace**<br/>
 > <img src="/assets/images/stealien_logo.png" width="70px" alt="Stealien Logo"><br/>
-> Company team affiliation : AppSuit Team<br/>
-> Work duration : From September 27, 2022, to present
+> **Team at Stealien**
+> AppSuit Team (September 27, 2022 – December 31, 2024) <br/>
+> Red Team (January 1, 2025 – Present)
 
 **Issued CVE**<br/>
 > CVE-2023-44144 <br/>
