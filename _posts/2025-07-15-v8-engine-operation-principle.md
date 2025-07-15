@@ -29,13 +29,17 @@ V8의 실행 구조는 다음과 같은 다단계로 구성됩니다.
 </p>
 
 <b>Parsing</b> <br>
-우선 런-타임(Run-Time) 시점에 자바스크립트 소스코드는 Parser에 의해 AST(Abstract Syntax Tree)로 변환됩니다. 이는 프로그램의 구조를 트리 형태로 표현한 중간 표현이라고 생각하시면 됩니다.<br>
+우선 런-타임(Run-Time) 시점에 자바스크립트 소스코드는 Parser에 의해 AST(Abstract Syntax Tree)로 변환됩니다. 이는 프로그램의 구조를 트리 형태로 표현한 중간 표현이라고 생각하시면 됩니다.
+
 <b>Ignition Interpreter</b> <br>
-AST를 바탕으로 바이트코드를 생성하는 인터프리터입니다. 이 단계는 빠른 초기 실행을 위한 경량화된 인터프리터이며, 중복된 코드가 반복 실행되면 "hot" 패턴으로 인식되는데 그럼, Turbofan Compiler에서 추가적인 처리가 이루어집니다.<br>
+AST를 바탕으로 바이트코드를 생성하는 인터프리터입니다. 이 단계는 빠른 초기 실행을 위한 경량화된 인터프리터이며, 중복된 코드가 반복 실행되면 "hot" 패턴으로 인식되는데 그럼, Turbofan Compiler에서 추가적인 처리가 이루어집니다.
+
 <b>Turbofan Compiler</b> <br>
-Ignition Interpreter에서 생성된 바이트코드를 바탕으로 SSA(Static Single Assignment) 기반 최적화와 함께 기계어로 컴파일합니다. 이 컴파일러는 인라인 캐싱(Inline Caching), 히든 클래스(Hidden Class), 불필요한 연산 제거 등 고급 최적화 기법을 적용하여 퍼포먼스를 향상시킵니다. <br>
+Ignition Interpreter에서 생성된 바이트코드를 바탕으로 SSA(Static Single Assignment) 기반 최적화와 함께 기계어로 컴파일합니다. 이 컴파일러는 인라인 캐싱(Inline Caching), 히든 클래스(Hidden Class), 불필요한 연산 제거 등 고급 최적화 기법을 적용하여 퍼포먼스를 향상시킵니다.
+
 <b>Perform Optimization</b> <br>
-컴파일된 기계어는 캐시에 저장되어, 동일한 코드가 반복될 경우 재컴파일 없이 즉시 실행될 수 있도록 합니다.<br>
+컴파일된 기계어는 캐시에 저장되어, 동일한 코드가 반복될 경우 재컴파일 없이 즉시 실행될 수 있도록 합니다.
+
 <b>Byte Code</b> <br>
 생성된 바이트코드를 실제 프로세서에서 실행됩니다.
 
