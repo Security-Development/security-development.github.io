@@ -17,7 +17,7 @@ imageshadow: true
 
 **Workplace**<br/>
 > <img src="/assets/images/stealien_logo.png" width="70px" alt="Stealien Logo"><br/>
-> **Team at Stealien**
+> **Team at Stealien** <br/>
 > AppSuit Team (September 27, 2022 – December 31, 2024) <br/>
 > Red Team (January 1, 2025 – Present)
 
