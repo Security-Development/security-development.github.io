@@ -6,5 +6,5 @@ categories: [principle]
 tags: [hardware]
 image: assets/images/computer_wakeup.gif
 ---
-여러분, 안녕하세요!
+독자 여러분, 안녕하세요!
 

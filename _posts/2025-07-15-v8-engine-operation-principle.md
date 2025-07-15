@@ -6,7 +6,7 @@ categories: [principle]
 tags: [v8]
 image: assets/images/Who-are-you!.gif
 ---
-여러분, 안녕하세요!
+독자 여러분, 안녕하세요!
 
 최근 Google의 ASAN(Address Sanitizer)에 관한 심도 있는 기술 문서를 접한 이후, 브라우저 보안의 구조적 취약점과 관련한 학문적 관심이 한층 더 깊어졌습니다. 이 글에서는 자바스크립트 및 웹 어셈블리 엔진인 V8에 대한 기술적 배경과 그 구조를 정리하고, 향후 V8 기반의 1-day 취약점 분석을 위한 사전 이해로 활용될 수 있도록 내용을 체계적으로 서술하고자 합니다.
 
