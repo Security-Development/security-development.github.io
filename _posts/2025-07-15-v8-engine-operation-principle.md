@@ -49,7 +49,7 @@ Ignition Interpreter에서 생성된 바이트코드를 바탕으로 SSA(Static 
 
 ### [ Reference ]
 - https://blog.bitsrc.io/secret-behind-javascript-performance-v8-hidden-classes-ba4d0ebfb89d
-- https://ko.wikipedia.org/wiki/V8_%EC%97%94%EC%A7%84
+- https://ko.wikipedia.org/wiki/V8_엔진
 - https://oldmachinepress.com/2016/05/28/antoinette-levavasseur-aircraft-engines/
 - https://rnfltpgus.github.io/knowledge/v8-engine/
 - https://jaehyeon48.github.io/javascript/google-v8-engine/
