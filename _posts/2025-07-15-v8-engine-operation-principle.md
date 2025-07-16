@@ -24,8 +24,8 @@ JIT 덕분에 실행 시점에 자바스크립트 코드를 기계어로 변환�
 
 V8의 실행 구조는 다음과 같은 다단계의 JIT 실행 파이프라인으로 갖추고 있습니다.
 
-<div align="center" style="background-color: rgb(33, 37, 41);">
-    <pre style="color: rgb(255, 255, 255);" >
+<div align="center" style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; margin: 0;">
 [ Parser ]
 ↓
 [ Ignition Interpreter ]
@@ -33,8 +33,9 @@ V8의 실행 구조는 다음과 같은 다단계의 JIT 실행 파이프라인�
 [ Sparkplug ]
 ↓
 [ TurboFan ]
-    </pre>
+</pre>
 </div>
+
 1. 파서 (Parser)<br>
 자바스크립트 소스를 어휘 분석과 파싱을 통해 토큰화하고 추상 구문 트리(AST)로 변환하는데, 이는 코드 구조를 표현하는 중간 표현(IR)으로서 이후 단계의 기반이 됩니다.
 
