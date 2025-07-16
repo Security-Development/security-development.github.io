@@ -24,7 +24,7 @@ JIT 덕분에 실행 시점에 자바스크립트 코드를 기계어로 변환�
 
 V8의 실행 구조는 다음과 같은 다단계의 JIT 실행 파이프라인으로 갖추고 있습니다.
 
-<div align="center" style="color: white; background-color; rgb(33, 37, 41);">
+<div align="center" style="color: white; background-color: rgb(33, 37, 41);">
     <pre>
 [ Parser ]
 ↓
