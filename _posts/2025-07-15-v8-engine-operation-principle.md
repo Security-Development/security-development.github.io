@@ -22,26 +22,37 @@ V8은 개발 중에는 Google의 내부 비밀 프로젝트로써 비공개 CVS(
 
 JIT 덕분에 실행 시점에 자바스크립트 코드를 기계어로 변환함으로써 성능을 극적으로 향상시킬 수 있는 구조적 장점을 가졌지만 C/C++계열 특성상 Coder가 메모리를 수동으로 관리해줘야 하기 때문에 해커들은 그들의 실수의 틈을 찾아내고 이로 인해 발생하는 Memory Curruption은 종종 보안 취약점으로 이어졌습니다. 실제로 미국 백악관에서는 메모리 안정성 이슈를 해소하기 위해 Rust와 같은 메모리 안전 언어 도입을 권고하기도 했습니다.
 
-V8의 실행 구조는 다음과 같은 다단계로 구성됩니다.
+V8의 실행 구조는 다음과 같은 다단계의 JIT 실행 파이프라인으로 갖추고 있습니다.
 
-<p align="center">
-    <img src="../assets/images/v8_jit.png">
-</p>
+```
+      [ Parser ]
+          ↓
+[ Ignition Interpreter ]
+          ↓
+     [ Sparkplug ]
+          ↓
+     [ TurboFan ]
+```
 
-<b>Parsing</b> <br>
-우선 런-타임(Run-Time) 시점에 자바스크립트 소스코드는 Parser에 의해 AST(Abstract Syntax Tree)로 변환됩니다. 이는 프로그램의 구조를 트리 형태로 표현한 중간 표현이라고 생각하시면 됩니다.
+1. 파서 (Parser)<br>
+자바스크립트 소스를 어휘 분석과 파싱을 통해 토큰화하고 추상 구문 트리(AST)로 변환하는데, 이는 코드 구조를 표현하는 중간 표현(IR)으로서 이후 단계의 기반이 됩니다.
 
-<b>Ignition Interpreter</b> <br>
-AST를 바탕으로 바이트코드를 생성하는 인터프리터입니다. 이 단계는 빠른 초기 실행을 위한 경량화된 인터프리터이며, 중복된 코드가 반복 실행되면 "hot" 패턴으로 인식되는데 그럼, Turbofan Compiler에서 추가적인 처리가 이루어집니다.
+2. 바이트코드 생성 (Ignition Interpreter)<br>
+V8의 인터프리터인 Ignition은 AST를 입력으로 바이트코드를 생성하고 실행합니다.<br><br>
+이 단계에서 레지스터 기반 가상 머신으로 동작하며, 생성된 바이트코드를 한 단계씩 해석하여 실행하는데, 실행 성능은 느리지만, 초기 실행 및 메모리 효율 면에서 유리하며 애플리케이션의 빠른 시작에 기여합니다.<br><br>
+또한, 타입 피드백 수집을 위해 각 바이트코드 연산 실행 시 실행 중인 데이터 타입 정보를 피드백 벡터라는 자료구조에 기록합니다.
 
-<b>Turbofan Compiler</b> <br>
-Ignition Interpreter에서 생성된 바이트코드를 바탕으로 SSA(Static Single Assignment) 기반 최적화와 함께 기계어로 컴파일합니다. 이 컴파일러는 인라인 캐싱(Inline Caching), 히든 클래스(Hidden Class), 불필요한 연산 제거 등 고급 최적화 기법을 적용하여 퍼포먼스를 향상시킵니다.
+3. 베이스라인 JIT 컴파일 (Sparkplug)<br>
+Ignition Interpreter으로 어느 정도 실행된 코드가 있다면, V8은 Sparkplug라 불리는 비최적화(Non-optimizing) 컴파일러를 통해 바이트코드를 네이티브 머신 코드로 직접 컴파일합니다. <br><br>
+Sparkplug는 V8 v9.1(Chrome 91)에서 도입된 신규 컴파일 단계로, 인터프리터와 최적화 컴파일러 사이에 위치합니다. Sparkplug는 빠른 컴파일 속도를 최우선 목표로 설계되어, TurboFan보다 적극적으로 잦은 컴파일이 가능하며 작은 함수도 신속히 기계어로 전환 할 수 있습니다. <br><br>
+이 단계에서 생성되는 코드는 최적화가 거의 적용되지 않았지만 인터프리터 바이트코드 실행보다 훨씬 빠르기 때문에, 애플리케이션의 실제 체감 성능을 5–15% 향상시키는 효과를 가져왔습니다.
 
-<b>Perform Optimization</b> <br>
-컴파일된 기계어는 캐시에 저장되어, 동일한 코드가 반복될 경우 재컴파일 없이 즉시 실행될 수 있도록 합니다.
+4. 고급 최적화 JIT 컴파일 (TurboFan)<br>
+일정 횟수 이상 호출되어 핫스팟(Hot)으로 간주된 함수는 최종적으로 V8의 TurboFan 최적화 컴파일러에 의해 고도로 최적화된 머신 코드로 컴파일됩니다. <br><br>
+이 단계에서 인터프리터와 Sparkplug로부터 수집된 타입 피드백을 활용하여 추측 기반 최적화(speculative optimizations)를 수행하고, SSA(Static Single Assignment) 기반 IR(Sea of Nodes) 상에서 여러 최적화 패스를 거쳐 매우 빠른 코드로 변환합니다. <br><br>
+TurboFan이 생성한 코드가 실행됨에 따라, V8은 런타임에 가정한 타입이 깨지는지를 검사하는 가드(check)를 삽입하며, 만약 실행 중 예상과 다른 타입의 데이터가 나타나면 재빠르게 역최적화(deoptimization)하여 해당 함수의 실행을 느린 경로(Ignition Interpreter 또는 Sparkplug 코드)로 되돌립니다.
 
-<b>Byte Code</b> <br>
-생성된 바이트코드를 실제 프로세서에서 실행됩니다.
+요약하면, 현재의 V8은 Parser → Ignition Interpreter → Sparkplug(베이스라인 JIT) → TurboFan(최적화 JIT)의 다단계 파이프라인을 통해 초기 구동 시간과 런타임 성능 간 균형을 이루는 구조를 취하고 있습니다.
 
 즉, V8의 JIT 컴파일러는 기존 인터프리터 방식의 단점인 반복된 명령어 실행 시 매번 동일한 해석이 필요한 비효율성을 보완하여, 실시간으로 컴파일된 기계어를 재활용함으로써 구조적 성능을 비약적으로 향상시킵니다. 이러한 다단계 실행 파이프라인은 자바스크립트 실행 환경의 실질적인 속도 개선뿐만 아니라, 현대 웹 애플리케이션에서 요구하는 높은 반응성과 복잡도 처리를 가능하게 만든 핵심 요소라고 생각합니다.
 
@@ -53,3 +64,4 @@ Ignition Interpreter에서 생성된 바이트코드를 바탕으로 SSA(Static 
 - https://oldmachinepress.com/2016/05/28/antoinette-levavasseur-aircraft-engines/
 - https://rnfltpgus.github.io/knowledge/v8-engine/
 - https://jaehyeon48.github.io/javascript/google-v8-engine/
+- https://v8.dev/blog/sparkplug
