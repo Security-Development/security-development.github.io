@@ -61,7 +61,7 @@ TurboFan은 V8 엔진의 마지막 JIT 계층이자 가장 정교한 최적화 �
 끝으로, 이 글이 브라우저 내부 구조와 V8 JIT 파이프라인에 대한 기술적 이해를 넓히는 데 작은 보탬이 되었기를 바랍니다.
 다음 글에서는 TurboFan JIT 최적화 과정에서 발생한 1-day 취약점인 CVE-2023-2033를 의 원인과 공격 벡터에 대해 분석해보고자 합니다.
 
-긴 글 읽어주셔서 진심으로 감사드립니다.
+저의 글 읽어주셔서 진심으로 감사드립니다.
 
 ### [ Reference ]
 - https://blog.bitsrc.io/secret-behind-javascript-performance-v8-hidden-classes-ba4d0ebfb89d
