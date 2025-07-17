@@ -52,7 +52,7 @@ Ignition Interpreter으로 어느 정도 실행된 코드가 있다면, V8은 Sp
 또한, Ignition Interpreter 실행 중 hot loop가 감지되면 On-Stack Replacement(OSR)를 통해 실행 중인 스택 프레임을 동적으로 JIT 최적화된 코드로 교체할 수 있으며, 이는 브라우저의 응답성을 떨어뜨리지 않으면서도 성능을 확보하는 데 매우 큰 역활을 합니다.
 
 5. 고급 최적화 JIT 컴파일 (TurboFan)<br>
-TurboFan은 V8 엔진의 마지막 JIT 계층이자 가장 정교한 최적화 컴파일러로, 일정 횟수 이상 호출되어 “핫스팟(hot)”으로 분류된 함수에 대해 실행됩니다. 이 단계에서는 Ignition과 초기 JIT 단계에서 수집된 타입 피드백(feedback vector)을 바탕으로 추측 기반(speculative) 최적화를 적용합니다. 그러면서 SSA 기반의 Sea‑of‑Nodes IR 또는 최근에는 더 향상된 Turboshaft(IR) 구조를 활용해 여러 최적화 패스를 수행합니다. 이 패스는 함수 인라이닝, 상수 전파, 범위 분석(range analysis), 경계 검사 제거, 중복 연산 제거, 히든 클래스 접근 최적화, 인라인 캐싱 적용 등을 포함합니다. TurboFan이 생성한 머신 코드는 가드 체크(guard checks)를 포함해 잘못된 타입이나 예상치 못한 상황이 발생할 경우 자동으로 비최적화 상태로 전환돼 Ignition Interpreter나 이전 JIT 단계의 코드로 복귀합니다.
+TurboFan은 V8 엔진의 최종 JIT 계층이자 가장 고도화된 최적화 컴파일러로, 일정 횟수 이상 반복 호출되어 Hot Spot으로 분류된 함수에 대해 적용됩니다. 이 단계에서는 Ignition Interpreter 및 초기 JIT 계층(Sparkplug, Maglev)에서 수집된 Type Feedback, 즉 Feedback Vector를 기반으로 Speculative Optimization이 수행됩니다. 내부적으로는 SSA 기반의 Sea-of-Nodes IR 구조를 사용하며, 최근에는 이를 대체하는 형태로 Turboshaft IR이 도입되어 보다 간결하고 효율적인 최적화가 가능해졌습니다. TurboFan은 이러한 IR 위에서 다양한 최적화 패스를 적용하며, 대표적으로 Function Inlining, Constant Propagation, Range Analysis, Bounds Check Elimination, Common Subexpression Elimination, Hidden Class Access Optimization, Inline Caching 등이 수행됩니다. 최종적으로 생성된 네이티브 머신 코드는 실행 중 가정한 타입 조건이 깨질 수 있는 지점마다 Guard Check를 삽입하며, 이 조건이 위반될 경우 즉시 역최적화이 발생시켜, 해당 함수 실행이 안정적인 경로인 Ignition Interpreter 또는 이전 JIT 계층으로 안전하게 Roll-Back되도록 합니다.
 
 요약하면, 현재의 V8은 Parser → Ignition Interpreter → Sparkplug(비최적화 JIT) → Maglev(중간 최적화 JIT) → TurboFan(고급 최적화 JIT)의 다단계 파이프라인을 통해 초기 구동 시간과 런타임 성능 간 균형을 이루는 구조를 취하고 있습니다.
 
