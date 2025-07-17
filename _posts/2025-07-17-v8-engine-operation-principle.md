@@ -64,6 +64,7 @@ TurboFan은 V8 엔진의 최종 단계이자 가장 고도화된 최적화 컴�
 저의 글 읽어주셔서 진심으로 감사드립니다.
 
 ### [ Reference ]
+- https://en.wikipedia.org/wiki/Léon_Levavasseur
 - https://blog.bitsrc.io/secret-behind-javascript-performance-v8-hidden-classes-ba4d0ebfb89d
 - https://ko.wikipedia.org/wiki/V8_엔진
 - https://oldmachinepress.com/2016/05/28/antoinette-levavasseur-aircraft-engines/
