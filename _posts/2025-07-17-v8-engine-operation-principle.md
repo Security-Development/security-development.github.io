@@ -12,9 +12,9 @@ image: assets/images/Who-are-you!.gif
 
 본격적인 기술 분석에 앞서, V8이라는 명칭 자체가 가지는 기원에 대해 흥미를 가졌고, 이에 대한 소소한 고찰로 글을 시작하려 합니다.일반적으로 V8이라는 단어는 자동차 공학 분야에서 8기통 엔진을 지칭하는 용어로 널리 사용됩니다. V형으로 배열된 8개의 실린더가 피스톤의 왕복 운동을 통해 강력한 동력을 생성하는 이 엔진은, 4000cc 이상의 고배기량을 바탕으로 탁월한 퍼포먼스를 자랑하기때문에 머슬카나 고성능 스포츠카, 대형 SUV 등에서 널리 채택되고 있으며, 연료 효율보다는 출력 성능이 강조되어 '기름 먹는 하마' 라는 별칭을 가지고 있기도합니다.
 
-'8기통은 미국이 태생이다' 라는 흔한 오해와 달리, 8기통은 미국에서 처음 고안된 것은 아니었습니다. 자원이 풍부한 미국은 8기통을 세계 최초로 양산을 시작한 나라일 뿐, 기술적 기원은 19세기 프랑스에서 시작되었습니다. 1902년 프랑스의 공학자 Léon Levavasseur는 세계 최초의 V8 엔진 설계에 대한 특허를 출원했습니다. 그는 항공기에 사용할 엔진을 설계하면서 직렬 4기통의 기통 수를 6개로 늘리려는 기술적 한계를 극복하기 위해 많은 어려움을 겪었습니다. 그가 만든 6기통 엔진은 크랭크 축이 길어져 엔진이 원활하게 작동 하지 않았고 그는 깊은 고민에 빠져 빠져 고뇌하고 있습니다.
+'8기통은 미국이 태생이다'라는 흔한 오해와 달리, V8 엔진의 기술적 기원은 19세기 프랑스에서 시작되었습니다. 1902년 8월 28일 프랑스의 엔지니어 Léon Levavasseur는 그의 엔진에 대한 비밀 특허를 신청했습니다. 이 특허 출원은 1903년 8월 28일에 공개되었고 1904년 9월 30일에 French Patent No. 399,068 특허 번호를 부여받았습니다. 이후 1904년부터 Antoinette V8이라는 항공기용 엔진으로 제작되어 실제 성능 검증에 들어갔습니다. 그는 기존의 직렬 엔진 형태에서 발생하던 긴 크랭크축의 진동 문제를 해결하기 위해 2개의 4기통 엔진을 V자로 결합한 구조를 도입하였고, 이를 통해 구조 안정성과 동력 효율을 모두 개선하는 데 성공했습니다.
 
-시간이 흐른 뒤, 그는 직렬 4기통 2개를 결합하는 방법을 고안해내어 합쳐보는 시도를 하였고 이후 원활하게 동작하는 것을 확인하며, 현대적인 의미의 8기통 구조가 처음으로 세상에 등장하게 되었습니다. 이처럼 강력한 힘을 자랑하며 기술적 완성도를 상징하는 8기통 엔진에서 영감을 받아 Google은 자사의 차세대 자바스크립트엔진 프로젝트에 V8이라는 명칭을 부여했습니다.
+초기에는 개발한 비행체가 엔진 성능과 비행 안정성 문제로 시험 비행에 실패하기도 했으나, 엔진은 성공적으로 동작했습니다. 그 후 1906년 파리에서 열린 Salon de l'Automobile라는 자동자 박람회에서 Antoinette V8 엔진을 자동차 모델에 장착해 전시하고, 모터보트 경주에서도 성능을 입증하며 V8 엔진 설계의 강점을 입증했습니다. 이처럼 강력하면서도 정제된 구조와 실험적 접근 방식이 결합된 V8 엔진 설계는, Google이 자사의 차세대 자바스크립트 엔진에 'V8'이라는 이름을 부여하게 된 배경이 되었습니다.
 
 2006년 가을 덴마크의 컴퓨터 프로그래머인 Lars Bak이 Google과의 인연을 시작함으로써 그를 중심으로 한 소수의 공학자들은 덴마크에 머물고 싶어하는 Lars Bak과 함께 덴마크에 있는 그의 농장에 있는 별채에서 V8개발 프로젝트를 진했습니다.
 
@@ -64,12 +64,14 @@ TurboFan은 V8 엔진의 최종 단계이자 가장 고도화된 최적화 컴�
 
 ### [ Reference ]
 - https://en.wikipedia.org/wiki/Léon_Levavasseur
+- https://oldmachinepress.com/2016/05/28/antoinette-levavasseur-aircraft-engines
+- https://earlyfrenchflight.blogspot.com/2017/04/leon-levavasseur.html
 - https://blog.bitsrc.io/secret-behind-javascript-performance-v8-hidden-classes-ba4d0ebfb89d
 - https://ko.wikipedia.org/wiki/V8_엔진
-- https://oldmachinepress.com/2016/05/28/antoinette-levavasseur-aircraft-engines/
-- https://rnfltpgus.github.io/knowledge/v8-engine/
-- https://jaehyeon48.github.io/javascript/google-v8-engine/
+- https://oldmachinepress.com/2016/05/28/antoinette-levavasseur-aircraft-engines
+- https://rnfltpgus.github.io/knowledge/v8-engine
+- https://jaehyeon48.github.io/javascript/google-v8-engine
 - https://v8.dev/blog/sparkplug
 - https://v8.dev/blog/maglev
 - https://v8.dev/blog/holiday-season-2023
-- https://github.blog/security/vulnerability-research/getting-rce-in-chrome-with-incomplete-object-initialization-in-the-maglev-compiler/
+- https://github.blog/security/vulnerability-research/getting-rce-in-chrome-with-incomplete-object-initialization-in-the-maglev-compiler
