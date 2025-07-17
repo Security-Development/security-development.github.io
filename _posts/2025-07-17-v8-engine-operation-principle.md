@@ -49,7 +49,7 @@ Ignition Interpreter로 어느 정도 실행된 코드가 있다면, V8은 Spark
 
 4. 중간 최적화 JIT 컴파일 (Maglev)<br>
 2023년부터 V8의 JIT 파이프라인에 도입된 Maglev(MAGnetized Low-latency Execution Velocity)는 Sparkplug와 TurboFan 사이의 성능 간극을 효과적으로 메워주는 중간 최적화 JIT 컴파일러입니다. 이 단계에서 SSA(Static Single Assignment) 기반의 선형 블록형 IR을 사용하며, 레지스터 기반 백엔드로 동작하여 Sparkplug보다 높은 최적화 성능을 제공하면서도 TurboFan보다 빠른 컴파일 속도를 자랑합니다. 전체적으로 단일 패스 방식의 빠른 코드 생성을 유지하면서도, 조건 분기, 호출 인라이닝, 피연산자 타입 추론 등 선택적인 최적화 기법을 적용하여 반복 루프와 같이 짧지만 빈번히 실행되는 함수에 특화된 JIT 처리를 제공합니다.
-또한, Ignition Interpreter 실행 중 hot loop가 감지되면 On-Stack Replacement(OSR)를 통해 실행 중인 스택 프레임을 동적으로 JIT 최적화된 코드로 교체할 수 있으며, 이는 브라우저의 응답성을 떨어뜨리지 않으면서도 성능을 확보하는 데 매우 큰 역활을 합니다.
+또한, Ignition Interpreter 실행 중 Hot Loop가 감지되면 On-Stack Replacement(OSR)를 통해 실행 중인 스택 프레임을 동적으로 JIT 최적화된 코드로 교체할 수 있으며, 이는 브라우저의 응답성을 떨어뜨리지 않으면서도 성능을 확보하는 데 매우 큰 역활을 합니다.
 
 5. 고급 최적화 JIT 컴파일 (TurboFan + Turboshaft IR)<br>
 TurboFan은 V8 엔진의 최종 단계이자 가장 고도화된 최적화 컴파일러로, 일정 횟수 이상 반복 호출되어 Hot Spot으로 분류된 함수에 대해 적용됩니다. 이 단계에서는 Ignition Interpreter 및 초기 JIT 계층(Sparkplug, Maglev)에서 수집된 Type Feedback, 즉 Feedback Vector를 기반으로 Speculative Optimization이 수행됩니다. 내부적으로는 SSA 기반의 Sea-of-Nodes IR 구조를 사용하며, 2023년, 이를 대체하는 Turboshaft IR이 도입되어 보다 간결하고 효율적인 최적화가 가능해졌습니다. TurboFan은 이러한 IR 위에서 다양한 최적화 패스를 적용하며, 대표적으로 Function Inlining, Constant Propagation, Range Analysis, Bounds Check Elimination, Common Subexpression Elimination, Hidden Class Access Optimization, Inline Caching 등이 수행됩니다. 최종적으로 생성된 네이티브 머신 코드는 실행 중 가정한 타입 조건이 깨질 수 있는 지점마다 Guard Check를 삽입하며, 이 조건이 위반될 경우 즉시 역최적화를 발생시켜, Ignition Interpreter 또는 이전 단계로 Roll-Back되도록 합니다.
