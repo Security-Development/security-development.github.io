@@ -57,7 +57,7 @@ Ignition Interpreter로 어느 정도 실행된 코드가 있다면, V8은 Spark
 5. 고급 최적화 JIT 컴파일 (TurboFan + Turboshaft IR)<br>
 TurboFan은 V8 엔진의 최종 단계이자 가장 고도화된 최적화 컴파일러로, 일정 횟수 이상 반복 호출되어 Hot Spot으로 분류된 함수에 대해 적용됩니다. 이 단계에서는 Ignition Interpreter 및 초기 JIT 계층(Sparkplug, Maglev)에서 수집된 Type Feedback, 즉 Feedback Vector를 기반으로 Speculative Optimization이 수행됩니다. 내부적으로는 SSA 기반의 Sea-of-Nodes IR 구조를 사용하며, 2023년, 이를 대체하는 Turboshaft IR이 도입되어 보다 간결하고 효율적인 최적화가 가능해졌습니다. TurboFan은 이러한 IR 위에서 다양한 최적화 패스를 적용하며, 대표적으로 Function Inlining, Constant Propagation, Range Analysis, Bounds Check Elimination, Common Subexpression Elimination, Hidden Class Access Optimization, Inline Caching 등이 수행됩니다. 최종적으로 생성된 네이티브 머신 코드는 실행 중 가정한 타입 조건이 깨질 수 있는 지점마다 Guard Check를 삽입하며, 이 조건이 위반될 경우 즉시 역최적화를 발생시켜, Ignition Interpreter 또는 이전 단계로 Roll-Back되도록 합니다.
 
-요약하면, 현재의 V8은 Parser → Ignition Interpreter → Sparkplug(비최적화 JIT) → Maglev(중간 최적화 JIT) → TurboFan + Turboshaft IR(고급 최적화 JIT)의 다단계 파이프라인을 통해 초기 구동 시간과 런타임 성능 간 균형을 이루는 구조를 취하고 있습니다.
+요약하면, 현재의 V8은 Parser → Ignition Interpreter → Sparkplug(비최적화 JIT) → Maglev(중간 최적화 JIT) → TurboFan + Turboshaft IR(고급 최적화 JIT)로 이어지는 다단계 파이프라인을 통해, 초기 구동 시간과 런타임 성능 사이의 균형을 효과적으로 이뤄내고 있습니다.
 
 즉, V8의 JIT 컴파일러는 기존 인터프리터 방식의 단점인 반복된 명령어 실행 시 매번 동일한 해석이 필요한 비효율성을 보완하여, 실시간으로 컴파일된 기계어를 재활용함으로써 구조적 성능을 비약적으로 향상시키며, 이러한 다단계 실행 파이프라인은 자바스크립트 실행 환경의 실질적인 속도 개선뿐만 아니라, 현대 웹 애플리케이션에서 요구하는 높은 반응성과 복잡도 처리를 가능하게 만든 핵심 요소가 되었습니다.
 
