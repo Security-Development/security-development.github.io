@@ -80,3 +80,4 @@ TurboFan은 V8 엔진의 최종 단계이자 가장 고도화된 최적화 컴�
 - https://v8.dev/blog/maglev
 - https://v8.dev/blog/holiday-season-2023
 - https://github.blog/security/vulnerability-research/getting-rce-in-chrome-with-incomplete-object-initialization-in-the-maglev-compiler
+- https://www.cio.com/article/3839512/백안관-c-c-사용-중단-권고에-c-창안자-프로파.html
