@@ -9,7 +9,7 @@ google_analytics: 'UA-xxxxxxxx-1'
 disqus: 'demowebsite'
 include: ["_pages"]
 permalink: /:title/
-email: dltmddyd645@gmail.com
+email: dltmddyd645@naver.com
 
 # Authors
 authors:
