@@ -93,3 +93,5 @@ Actually, when I opened Chrome’s Developer Tools and entered new ArrayBuffer(8
 <p align="center">
     <img src="assets/images/hacking-camp-27th-P0R0C3E5S1N9-write-up/arraybuffer_dump.png">
 </p>
+
+1byte is a unit made up of 8bits. In the code, Uint8Array, Uint32Array appear. The number n in Uint(n)Array refers to the number of bits.
