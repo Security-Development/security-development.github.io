@@ -91,14 +91,14 @@ I realized that I  must needed to understand about ArrayBuffer of JavaScript and
 Actually, when I opened Chrome’s Developer Tools and entered new ArrayBuffer(8) in the console, a transistor-shaped icon appeared next to the output. click on that icon, it opens the Memory Inspector panel at the bottom, where you can view a memory dump of the object.
 
 <p align="center">
-    <img src="assets/images/hacking-camp-27th-P0R0C3E5S1N9-write-up/arraybuffer_dump.png">
+    <img src="/assets/images/hacking-camp-27th-P0R0C3E5S1N9-write-up/arraybuffer_dump.png">
 </p>
 
 <div align="center" style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em;">
   8BIT = 1BYTE          32BIT = 4BYTE
 |                       |
- 2^8                     2^32
+ 2^8                    2^32
 </pre>
 </div>
 
