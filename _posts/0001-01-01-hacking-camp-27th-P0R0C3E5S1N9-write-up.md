@@ -258,32 +258,48 @@ To understand how I reversed the encryption logic, let’s denote the variables 
 - D: the encrypted result, i.e., result_32[index]
 
 From the encryption code
-\[
-D = (((A + B) \oplus C) + C) \oplus B
-\]
+
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+D = (((A + B) ^ C) + C) ^ B
+</pre>
+</div>
 
 I want to solve this equation to recover A given D, B, and C
 
 1. XOR both sides with B
-\[
-D \oplus B = ((A + B) \oplus C) + C
-\]
+
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+D ^ B = ((A + B) ^ C) + C
+</pre>
+</div>
 
 2. Subtract C from both sides
-\[
-(D \oplus B) - C = (A + B) \oplus C
-\]
+
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+(D ^ B) - C = (A + B) ^ C
+</pre>
+</div>
 
 3. XOR with C again
-\[
-((D \oplus B) - C) \oplus C = A + B
-\]
+
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+((D ^ B) - C) ^ C = A + B
+</pre>
+</div>
 
 4. Finally, subtract B
-\[
-A = (((D \oplus B) - C) \oplus C) - B
-\]
 
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+A = (((D ^ B) - C) ^ C) - B
+</pre>
+</div>
+
+### Solution Code
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
 result_32 = []
