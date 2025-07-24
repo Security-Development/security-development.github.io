@@ -86,7 +86,12 @@ console.log(encrypt(text).map((element, index) => {
 
 Thereafter, I understood it step by step and then I realized that the "encrypt" function is core of this logic after that.
 
+### What is ArrayBuffer in JavaScript?
 I realized that I  must needed to understand about ArrayBuffer of JavaScript and Uint(n)Array concepts in order to solving this challenge.
+
+JavaScript provides methods for directly manipulating ArrayBuffer. These methods are mostly used in WebAssembly and Binary Data Processing.
+
+ArrayBuffer is a low-level binary data buffer in JavaScript. It provides a fixed-length raw memory space that you can use to store and manipulate binary data directly.
 
 Actually, when I opened Chrome’s Developer Tools and entered new ArrayBuffer(8) in the console, a transistor-shaped icon appeared next to the output. click on that icon, it opens the Memory Inspector panel at the bottom, where you can view a memory dump of the object.
 
@@ -101,5 +106,18 @@ Actually, when I opened Chrome’s Developer Tools and entered new ArrayBuffer(8
   8BIT = 1BYTE          32BIT = 4BYTE
 |                       |
  2^8                    2^32
+</pre>
+</div>
+
+That is, 1byte has a size of 256(2^8) and 4bytes has a size of 4,294,967,296(2^32).
+
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+var buf = new ArrayBuffer(8); // Creates a buffer with a size of 8 bytes: [00, 00, 00, 00, 00, 00, 00, 00]
+var buf_8 = new Uint8Array(buf); // Interprets the buffer as an array of unsigned 8-bit integers (1 byte each)
+var buf_32 = new Uint32Array(buf); // Interprets the buffer as an array of unsigned 32-bit integers (4 bytes each)
+
+buf_8[0] = 256; // A single byte can represent 256 values: 0 to 255. Since 256 is out of range, it wraps around and stores 0 in the first byte.
+buf_32[0] = 256; // A 4-byte integer can represent 4,294,967,296 values: 0 to 4,294,967,295. Storing 256 results in the buffer holding 00 01 at the corresponding position (little endian).
 </pre>
 </div>
