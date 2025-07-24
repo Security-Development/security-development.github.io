@@ -122,11 +122,11 @@ That is, 1byte has a buffer size of 256(2^8) and 4bytes has a buffer size of 4,2
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
 var buf = new ArrayBuffer(8); // Creates a buffer with a size of 8 bytes: [00, 00, 00, 00, 00, 00, 00, 00]
-var buf_8 = new Uint8Array(buf); // Interprets the buffer as an array of unsigned 8-bit integers (1 byte each)
-var buf_32 = new Uint32Array(buf); // Interprets the buffer as an array of unsigned 32-bit integers (4 bytes each)
+var buf_8 = new Uint8Array(buf); // Interprets the buffer as an array of unsigned 8bit integers (1 byte each)
+var buf_32 = new Uint32Array(buf); // Interprets the buffer as an array of unsigned 32bit integers (4 bytes each)
 
 buf_8[0] = 256; // A single byte can represent 256 values: 0 to 255. Since 256 is out of range, it wraps around and stores 0 in the first byte.
-buf_32[0] = 256; // A 4-byte integer can represent 4,294,967,296 values: 0 to 4,294,967,295. Storing 256 results in the buffer holding 00 01 at the corresponding position (little endian).
+buf_32[0] = 256; // A 4byte integer can represent 4,294,967,296 values: 0 to 4,294,967,295. Storing 256 results in the buffer holding 00 01 at the corresponding position (little endian).
 </pre>
 </div>
 <br>
@@ -135,17 +135,20 @@ buf_32[0] = 256; // A 4-byte integer can represent 4,294,967,296 values: 0 to 4,
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
 const reverseBits = (a) => {
-    let _g1 = 0;
+    let result = 0;
     while (a) {
-        _g1 <<= 1;
-        _g1 |= a & 1;
+        result <<= 1;
+        result |= a & 1;
         a >>>= 1; 
     }
-    return _g1;
+    return result;
 }
 </pre>
 </div>
-The reverseBits function is very simple. it reverses the bits of the input "a" like reverseBits(0b1101) returns 0b1011.
+The reverseBits function takes an input number a and reverses its bits as if it were a 32bit unsigned integer.<br>
+For example, reverseBits(0b00000000000000000000000000001101) returns 0b10110000000000000000000000000000.<br><br>
+It works by shifting the result to the left one bit at a time while copying the least significant bit of a into it.<br>
+At the same time, a is shifted to the right using the zero-fill right shift (>>>) operator until all bits have been processed.
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
@@ -190,9 +193,10 @@ let keystream_8 = new Uint8Array(keystream);
 let keystream_32 = new Uint32Array(keystream);
 </pre>
 </div>
-keystream: Allocate a buffer of 'a.length' bytes for the keystream<br>
-keystream_8: Create a view for accessing the buffer in 1-byte units<br>
-keystream_32: Create a view for accessing the same buffer in 4-byte units
+
+- keystream: Allocate a buffer of 'a.length' bytes for the keystream
+- keystream_8: Create a view for accessing the buffer in 1byte units
+- keystream_32: Create a view for accessing the same buffer in 4byte units
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
@@ -202,7 +206,7 @@ for (let i = 0; i < a.length; i++) {
 </pre>
 </div>
 
-The input string a is converted character by character into 1-byte values and stored in input_text_8.
+The input string a is converted character by character into 1byte values and stored in input_text_8.
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
@@ -235,7 +239,50 @@ return new Uint8Array(result);
 
 Finally, the result is returned as a Uint8Array.
 
-### My Solution Code
+### My Solution
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+input_text_32.forEach((_, index) => {
+    result_32[index] = (((_ + keystream_32[index]) ^ reverseBits(keystream_32[index]) ) +  reverseBits(keystream_32[index])) ^ keystream_32[index];
+});
+</pre>
+</div>
+
+I wrote the inverse operation here and applied a bitwise AND with 0xffffffff to each value to properly handle unsigned integers.
+
+To understand how I reversed the encryption logic, let’s denote the variables as follow
+
+- A: the original 32bit plaintext block
+- B: the corresponding keystream_32[index]
+- C: the reversed bits of B, i.e., reverseBits(B)
+- D: the encrypted result, i.e., result_32[index]
+
+From the encryption code
+$$
+D = (((A + B) \oplus C) + C) \oplus B
+$$
+
+I want to solve this equation to recover A given D, B, and C
+
+1. XOR both sides with B
+$$
+D \oplus B = ((A + B) \oplus C) + C
+$$
+
+2. Subtract C from both sides
+$$
+(D \oplus B) - C = (A + B) \oplus C
+$$
+
+3. XOR with C again
+$$
+((D \oplus B) - C) \oplus C = A + B
+$$
+
+4. Finally, subtract B
+$$
+A = (((D \oplus B) - C) \oplus C) - B
+$$
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
@@ -280,10 +327,21 @@ flag_32 = []
 
 for i in range(len(result_32)):
 &nbsp;&nbsp;&nbsp;&nbsp;rev = (((enc_data[i] ^ result_32[i]) - enc1_result_32[i]) ^ enc1_result_32[i]) - result_32[i]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;if rev < 0:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rev &= 0xffffffff # unsigned shift<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if rev < 0:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#35; Convert to 32bit unsigned if negative
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rev &= 0xffffffff<br>
 &nbsp;&nbsp;&nbsp;&nbsp;flag_32.append(hex(rev))
 
-print("FALG:", dword2byte(flag_32))
+print(f"FLAG: HCAMP{{{dword2byte(flag_32)}}}")
+</pre>
+</div>
+
+### Decryption Completed and Flag Obtained
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+heapx@Mac tools % python3 solve.py
+10
+30
+FLAG: HCAMP{40670b0248b9b931d3a6fe2d225dbb850c999ae7}
 </pre>
 </div>
