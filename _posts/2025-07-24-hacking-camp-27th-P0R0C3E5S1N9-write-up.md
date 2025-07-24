@@ -267,7 +267,7 @@ D = (((A + B) ^ C) + C) ^ B
 
 I want to solve this equation to recover A given D, B, and C
 
-1. XOR both sides with B
+#1. XOR both sides with B
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
@@ -275,7 +275,7 @@ D ^ B = ((A + B) ^ C) + C
 </pre>
 </div>
 
-2. Subtract C from both sides
+#2. Subtract C from both sides
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
@@ -283,7 +283,7 @@ D ^ B = ((A + B) ^ C) + C
 </pre>
 </div>
 
-3. XOR with C again
+#3. XOR with C again
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
@@ -291,7 +291,7 @@ D ^ B = ((A + B) ^ C) + C
 </pre>
 </div>
 
-4. Finally, subtract B
+#4. Finally, subtract B
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
