@@ -182,10 +182,9 @@ const encrypt = (a) => {
 </div>
 
 The encrypt function is most important. Actually I think if you understand all this logic of function you can think of it as solved 80%.
-
-
+<br>
 ### My Solution Code
-
+<br>
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
 arr3_32 = []
@@ -228,12 +227,10 @@ print(D)
 flag_32 = []
 
 for i in range(len(arr3_32)):
-    rev = (((enc_data[i] ^ arr3_32[i]) - enc1_arr3_32[i]) ^ enc1_arr3_32[i]) - arr3_32[i]
-
-    if rev < 0:
-        rev &= 0xffffffff # unsigned shift 
-
-    flag_32.append(hex(rev))
+&nbsp;&nbsp;&nbsp;&nbsp;rev = (((enc_data[i] ^ arr3_32[i]) - enc1_arr3_32[i]) ^ enc1_arr3_32[i]) - arr3_32[i]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if rev < 0:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rev &= 0xffffffff # unsigned shift<br>
+&nbsp;&nbsp;&nbsp;&nbsp;flag_32.append(hex(rev))
 
 print("FALG:", dword2byte(flag_32))
 </pre>
