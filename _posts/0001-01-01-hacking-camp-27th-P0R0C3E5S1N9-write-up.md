@@ -258,31 +258,31 @@ To understand how I reversed the encryption logic, let’s denote the variables 
 - D: the encrypted result, i.e., result_32[index]
 
 From the encryption code
-$$
+\[
 D = (((A + B) \oplus C) + C) \oplus B
-$$
+\]
 
 I want to solve this equation to recover A given D, B, and C
 
 1. XOR both sides with B
-$$
+\[
 D \oplus B = ((A + B) \oplus C) + C
-$$
+\]
 
 2. Subtract C from both sides
-$$
+\[
 (D \oplus B) - C = (A + B) \oplus C
-$$
+\]
 
 3. XOR with C again
-$$
+\[
 ((D \oplus B) - C) \oplus C = A + B
-$$
+\]
 
 4. Finally, subtract B
-$$
+\[
 A = (((D \oplus B) - C) \oplus C) - B
-$$
+\]
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
