@@ -194,7 +194,7 @@ let keystream_32 = new Uint32Array(keystream);
 </pre>
 </div>
 
-- keystream: Allocate a buffer of 'a.length' bytes for the keystream
+- keystream: Allocate a buffer of "a.length" bytes for the keystream
 - keystream_8: Create a view for accessing the buffer in 1byte units
 - keystream_32: Create a view for accessing the same buffer in 4byte units
 
@@ -361,3 +361,10 @@ heapx@Mac tools % python3 solve.py
 FLAG: HCAMP{40670b0248b9b931d3a6fe2d225dbb850c999ae7}
 </pre>
 </div>
+
+### In Conclusion
+Hacking Camp has been a truly valuable experience for me upon reflection. Fortunately, our team won first place in the Hacking Camp CTF. I'm deeply grateful to my teammates from everywhere(어디에도)
+
+As I close out this post, I want to mention that this was my first time writing an article in English. It was a new and meaningful experience for me.
+
+So, I may have made some mistakes along the way. If you notice anything wrong or have any feedback about this post, please feel free to let me know!
