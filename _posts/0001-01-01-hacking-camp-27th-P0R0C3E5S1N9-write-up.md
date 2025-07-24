@@ -129,9 +129,9 @@ buf_8[0] = 256; // A single byte can represent 256 values: 0 to 255. Since 256 i
 buf_32[0] = 256; // A 4byte integer can represent 4,294,967,296 values: 0 to 4,294,967,295. Storing 256 results in the buffer holding 00 01 at the corresponding position (little endian).
 </pre>
 </div>
-<br>
+
 ### Explaining the my Improved Code
-<br>
+
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
 const reverseBits = (a) => {
