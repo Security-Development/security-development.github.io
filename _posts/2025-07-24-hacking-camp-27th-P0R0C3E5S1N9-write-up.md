@@ -265,7 +265,7 @@ D = (((A + B) ^ C) + C) ^ B
 </pre>
 </div>
 
-I want to solve this equation to recover A given D, B, and C
+I want to solve this equation to recover A given B, C, D
 
 <b>#1. XOR both sides with B</b>
 
