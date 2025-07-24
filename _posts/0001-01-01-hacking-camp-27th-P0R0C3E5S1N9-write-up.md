@@ -94,6 +94,8 @@ Actually, when I opened Chrome’s Developer Tools and entered new ArrayBuffer(8
     <img src="/assets/images/hacking-camp-27th-P0R0C3E5S1N9-write-up/arraybuffer_dump.png">
 </p>
 
+1byte is a unit made up of 8bits. In the code, Uint8Array, Uint32Array appear. The number n in Uint(n)Array refers to the number of bits.
+
 <div align="center" style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em;">
   8BIT = 1BYTE          32BIT = 4BYTE
@@ -101,5 +103,3 @@ Actually, when I opened Chrome’s Developer Tools and entered new ArrayBuffer(8
  2^8                    2^32
 </pre>
 </div>
-
-1byte is a unit made up of 8bits. In the code, Uint8Array, Uint32Array appear. The number n in Uint(n)Array refers to the number of bits.
