@@ -47,33 +47,33 @@ const reverseBits = (a) => {
 }
     
 const encrypt = (a) => {
-    let arr1 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
-    let arr1_8 = new Uint8Array(arr1); // 1byte
-    let arr1_32 = new Uint32Array(arr1); // 4byte
+    let key_stream = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
+    let key_stream_8 = new Uint8Array(key_stream); // 1byte
+    let key_stream_32 = new Uint32Array(key_stream); // 4byte
 
-    let arr2 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
-    let arr2_8 = new Uint8Array(arr2); // 1byte
-    let arr2_32 = new Uint32Array(arr2); // 4 byte
+    let input_text = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
+    let input_text_8 = new Uint8Array(input_text); // 1byte
+    let input_text_32 = new Uint32Array(input_text); // 4 byte
 
-    let arr3 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
-    let arr3_32 = new Uint32Array(arr3); // 4 byte
+    let result = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
+    let result_32 = new Uint32Array(result); // 4 byte
     
-    arr1_8[0] = 0x37;
+    key_stream_8[0] = 0x37;
 
     for (let i = 0; i < a.length; i++) {
-        arr2_8[i] = a.charCodeAt(i);
+        input_text_8[i] = a.charCodeAt(i);
     };
     
-    arr1_8.forEach((_, index, array) => {
+    key_stream_8.forEach((_, index, array) => {
         if (index == 0) return;
         array[index] = ((((array[index - 1] ^ 0x96) + 0xDD) ^ 0xA4) + 0x96) ^ 0xC8;
     });
     
-    arr2_32.forEach((_, index) => {
-        arr3_32[index] = (((_ + arr1_32[index]) ^ reverseBits(arr1_32[index]) ) +  reverseBits(arr1_32[index])) ^ arr1_32[index];
+    input_text_32.forEach((_, index) => {
+        result_32[index] = (((_ + key_stream_32[index]) ^ reverseBits(key_stream_32[index]) ) +  reverseBits(key_stream_32[index])) ^ key_stream_32[index];
     });
 
-    return new Uint8Array(arr3);
+    return new Uint8Array(result);
 };
 
 flag_enc = [164, 72, 70, 191, 200, 156, 172, 79, 52, 69, 146, 160, 106, 90, 169, 94, 108, 204, 156, 47, 106, 122, 198, 5, 206, 52, 249, 21, 70, 125, 172, 196, 96, 156, 186, 190, 81, 97, 105, 119];
@@ -145,49 +145,101 @@ const reverseBits = (a) => {
 }
 </pre>
 </div>
-The reverseBits function is processing to reverse of inputted "a" like reverseBits(0b1101) to 0b1011
+The reverseBits function is very simple. it reverses the bits of the input "a" like reverseBits(0b1101) returns 0b1011.
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
 const encrypt = (a) => {
-    let arr1 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
-    let arr1_8 = new Uint8Array(arr1); // 1byte
-    let arr1_32 = new Uint32Array(arr1); // 4byte
+    let keystream = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
+    let keystream_8 = new Uint8Array(keystream); // 1byte
+    let keystream_32 = new Uint32Array(keystream); // 4byte
 
-    let arr2 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
-    let arr2_8 = new Uint8Array(arr2); // 1byte
-    let arr2_32 = new Uint32Array(arr2); // 4 byte
+    let input_text = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
+    let input_text_8 = new Uint8Array(input_text); // 1byte
+    let input_text_32 = new Uint32Array(input_text); // 4 byte
 
-    let arr3 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
-    let arr3_32 = new Uint32Array(arr3); // 4 byte
-    
-    arr1_8[0] = 0x37;
+    let result = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
+    let result_32 = new Uint32Array(result); // 4 byte
+
+    keystream_8[0] = 0x37;
 
     for (let i = 0; i < a.length; i++) {
-        arr2_8[i] = a.charCodeAt(i);
+        input_text_8[i] = a.charCodeAt(i);
     };
     
-    arr1_8.forEach((_, index, array) => {
+    keystream_8.forEach((_, index, array) => {
         if (index == 0) return;
         array[index] = ((((array[index - 1] ^ 0x96) + 0xDD) ^ 0xA4) + 0x96) ^ 0xC8;
     });
     
-    arr2_32.forEach((_, index) => {
-        arr3_32[index] = (((_ + arr1_32[index]) ^ reverseBits(arr1_32[index]) ) +  reverseBits(arr1_32[index])) ^ arr1_32[index];
+    input_text_32.forEach((_, index) => {
+        result_32[index] = (((_ + keystream_32[index]) ^ reverseBits(keystream_32[index]) ) +  reverseBits(keystream_32[index])) ^ keystream_32[index];
     });
 
-    return new Uint8Array(arr3);
+    return new Uint8Array(result);
 };
 </pre>
 </div>
 
 The encrypt function is most important. Actually I think if you understand all this logic of function you can think of it as solved 80%.
 
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+let keystream = new ArrayBuffer(a.length);
+let keystream_8 = new Uint8Array(keystream);
+let keystream_32 = new Uint32Array(keystream);
+</pre>
+</div>
+keystream: Allocate a buffer of 'a.length' bytes for the keystream<br>
+keystream_8: Create a view for accessing the buffer in 1-byte units<br>
+keystream_32: Create a view for accessing the same buffer in 4-byte units
+
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+for (let i = 0; i < a.length; i++) {
+    input_text_8[i] = a.charCodeAt(i);
+}
+</pre>
+</div>
+
+The input string a is converted character by character into 1-byte values and stored in input_text_8.
+
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+keystream_8[0] = 0x37;
+
+keystream_8.forEach((_, index, array) => {
+    if (index == 0) return;
+    array[index] = ((((array[index - 1] ^ 0x96) + 0xDD) ^ 0xA4) + 0x96) ^ 0xC8;
+});
+</pre>
+</div>
+
+The first byte is initialized to 0x37. Each subsequent byte is then generated using XOR and addition, based on the value of the previous byte.
+
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+input_text_32.forEach((_, index) => {
+    result_32[index] = (((_ + keystream_32[index]) ^ reverseBits(keystream_32[index]) ) +  reverseBits(keystream_32[index])) ^ keystream_32[index];
+});
+</pre>
+</div>
+
+For each 32bit input block, it adds the corresponding keystream value, XORs the result with the reversed bits of the keystream, adds the reversed bits again, and finally XORs once more with the original keystream. The final encrypted value is stored in result_32.
+
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+return new Uint8Array(result);
+</pre>
+</div>
+
+Finally, the result is returned as a Uint8Array.
+
 ### My Solution Code
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
-arr3_32 = []
+result_32 = []
 
 def byte2dword(a1):
 &nbsp;&nbsp;&nbsp;&nbsp;ret = []
@@ -207,8 +259,8 @@ def dword2byte(a1):
 
 enc_data = [164, 72, 70, 191, 200, 156, 172, 79, 52, 69, 146, 160, 106, 90, 169, 94, 108, 204, 156, 47, 106, 122, 198, 5, 206, 52, 249, 21, 70, 125, 172, 196, 96, 156, 186, 190, 81, 97, 105, 119]
 enc_data = byte2dword(enc_data)
-arr3_32 = [982366263,3203513355,3002446079,1983493363,1258145895,1323420795,1122353263,1189725283,2595035223,512826411]
-enc1_arr3_32 = [990342231, -801271939, -15880371, 1737936439, 1930026921, 1863959481, 2063717281, 1662110641, -367479463, 445059375]
+result_32 = [982366263,3203513355,3002446079,1983493363,1258145895,1323420795,1122353263,1189725283,2595035223,512826411]
+enc1_result_32 = [990342231, -801271939, -15880371, 1737936439, 1930026921, 1863959481, 2063717281, 1662110641, -367479463, 445059375]
 
 &#35; given values of B, C, D
 B = 10
@@ -223,11 +275,11 @@ D = (((A + B) ^ C) + C) ^ B
 print(A)
 print(D)
 
-&#35; arr3_32[index] = (((_ + arr1_32[index]) ^ enc1(arr1_32[index]) ) +  enc1(arr1_32[index])) ^ arr1_32[index];
+&#35; result_32[index] = (((_ + key_stream_32[index]) ^ enc1(key_stream_32[index]) ) +  enc1(key_stream_32[index])) ^ key_stream_32[index];
 flag_32 = []
 
-for i in range(len(arr3_32)):
-&nbsp;&nbsp;&nbsp;&nbsp;rev = (((enc_data[i] ^ arr3_32[i]) - enc1_arr3_32[i]) ^ enc1_arr3_32[i]) - arr3_32[i]<br>
+for i in range(len(result_32)):
+&nbsp;&nbsp;&nbsp;&nbsp;rev = (((enc_data[i] ^ result_32[i]) - enc1_result_32[i]) ^ enc1_result_32[i]) - result_32[i]<br>
 &nbsp;&nbsp;&nbsp;&nbsp;if rev < 0:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rev &= 0xffffffff # unsigned shift<br>
 &nbsp;&nbsp;&nbsp;&nbsp;flag_32.append(hex(rev))
