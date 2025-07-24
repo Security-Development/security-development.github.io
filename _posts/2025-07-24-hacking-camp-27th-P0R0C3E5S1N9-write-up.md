@@ -252,10 +252,10 @@ I wrote the inverse operation here and applied a bitwise AND with 0xffffffff to 
 
 To understand how I reversed the encryption logic, let’s denote the variables as follow
 
-- A: the original 32bit plaintext block
-- B: the corresponding keystream_32[index]
-- C: the reversed bits of B, i.e., reverseBits(B)
-- D: the encrypted result, i.e., result_32[index]
+- A = the original 32-bit plaintext block
+- B = the corresponding keystream_32[index]
+- C = the reversed bits of B = reverseBits(B)
+- D = the encrypted result = result_32[index]
 
 From the encryption code
 
