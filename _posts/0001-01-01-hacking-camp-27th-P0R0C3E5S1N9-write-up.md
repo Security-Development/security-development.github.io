@@ -29,58 +29,66 @@ var _cs=["\x42\x79","\x70\x6f\x70","\x6d\x61\x70","\x6f\x64","\x65\x41","\x64\x7
 </pre>
 </div>
 
-While I was thinking about how to analyze the code, I came up a website called beautifier.io. It improves the readability of input JavaScript code.
+While I was thinking about how to analyze the code, I came up a website called "beautifier.io". It improves the readability of input JavaScript code.
 I inputted JavaScript code on the site. The website improved the code's readability, and I enhanced it further based on my own preferences. The code of below is the result from that
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
 const reverseBits = (a) => {
-            let _g1 = 0;
-            while (a) {
-                _g1 <<= 1;
-                _g1 |= a & 1;
-                a >>>= 1; 
-            }
-            return _g1;
-        },
+    let _g1 = 0;
+
+    while (a) {
+        _g1 <<= 1;
+        _g1 |= a & 1;
+        a >>>= 1; 
+    }
+
+    return _g1;
+}
     
-    encrypt = (a) => {
-        let arr1 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
-        let arr1_8 = new Uint8Array(arr1); // 1byte
-        let arr1_32 = new Uint32Array(arr1); // 4byte
+const encrypt = (a) => {
+    let arr1 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
+    let arr1_8 = new Uint8Array(arr1); // 1byte
+    let arr1_32 = new Uint32Array(arr1); // 4byte
 
-        let arr2 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
-        let arr2_8 = new Uint8Array(arr2); // 1byte
-        let arr2_32 = new Uint32Array(arr2); // 4 byte
+    let arr2 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
+    let arr2_8 = new Uint8Array(arr2); // 1byte
+    let arr2_32 = new Uint32Array(arr2); // 4 byte
 
-        let arr3 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
-        let arr3_32 = new Uint32Array(arr3); // 4 byte
-        
-        arr1_8[0] = 0x37;
+    let arr3 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
+    let arr3_32 = new Uint32Array(arr3); // 4 byte
+    
+    arr1_8[0] = 0x37;
 
-        for (let i = 0; i < a.length; i++) {
-            arr2_8[i] = a.charCodeAt(i);
-        };
-        
-        arr1_8.forEach((_, index, array) => {
-            if (index == 0) return;
-            array[index] = ((((array[index - 1] ^ 0x96) + 0xDD) ^ 0xA4) + 0x96) ^ 0xC8;
-        });
-        
-        arr2_32.forEach((_, index) => {
-            arr3_32[index] = (((_ + arr1_32[index]) ^ reverseBits(arr1_32[index]) ) +  reverseBits(arr1_32[index])) ^ arr1_32[index];
-        });
-        return new Uint8Array(arr3);
+    for (let i = 0; i < a.length; i++) {
+        arr2_8[i] = a.charCodeAt(i);
     };
+    
+    arr1_8.forEach((_, index, array) => {
+        if (index == 0) return;
+        array[index] = ((((array[index - 1] ^ 0x96) + 0xDD) ^ 0xA4) + 0x96) ^ 0xC8;
+    });
+    
+    arr2_32.forEach((_, index) => {
+        arr3_32[index] = (((_ + arr1_32[index]) ^ reverseBits(arr1_32[index]) ) +  reverseBits(arr1_32[index])) ^ arr1_32[index];
+    });
+
+    return new Uint8Array(arr3);
+};
 
 flag_enc = [164, 72, 70, 191, 200, 156, 172, 79, 52, 69, 146, 160, 106, 90, 169, 94, 108, 204, 156, 47, 106, 122, 198, 5, 206, 52, 249, 21, 70, 125, 172, 196, 96, 156, 186, 190, 81, 97, 105, 119];
 text = "HCAMP{AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA}";
 
 console.log(encrypt(text).map((element, index) => {
     console.log(element);
-    if (flag_enc[index] != element) return false;
+    
+    if (flag_enc[index] != element) 
+        return false;
+    
     return true;
-}).reduce((accumulator, current_value) => accumulator * current_value, flag_enc['length'] == text['length']));
+}).reduce(
+    (accumulator, current_value) => accumulator * current_value, flag_enc['length'] == text['length'])
+);
 </pre>
 </div>
 
@@ -109,7 +117,7 @@ Actually, when I opened Chrome’s Developer Tools and entered new ArrayBuffer(8
 </pre>
 </div>
 
-That is, 1byte has a size of 256(2^8) and 4bytes has a size of 4,294,967,296(2^32).
+That is, 1byte has a buffer size of 256(2^8) and 4bytes has a buffer size of 4,294,967,296(2^32).
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
@@ -119,5 +127,114 @@ var buf_32 = new Uint32Array(buf); // Interprets the buffer as an array of unsig
 
 buf_8[0] = 256; // A single byte can represent 256 values: 0 to 255. Since 256 is out of range, it wraps around and stores 0 in the first byte.
 buf_32[0] = 256; // A 4-byte integer can represent 4,294,967,296 values: 0 to 4,294,967,295. Storing 256 results in the buffer holding 00 01 at the corresponding position (little endian).
+</pre>
+</div>
+
+### Explaining the my Improved Code
+
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+const reverseBits = (a) => {
+    let _g1 = 0;
+    while (a) {
+        _g1 <<= 1;
+        _g1 |= a & 1;
+        a >>>= 1; 
+    }
+    return _g1;
+}
+</pre>
+</div>
+The reverseBits function is processing to reverse of inputted "a" like reverseBits(0b1101) to 0b1011
+
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+const encrypt = (a) => {
+    let arr1 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
+    let arr1_8 = new Uint8Array(arr1); // 1byte
+    let arr1_32 = new Uint32Array(arr1); // 4byte
+
+    let arr2 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
+    let arr2_8 = new Uint8Array(arr2); // 1byte
+    let arr2_32 = new Uint32Array(arr2); // 4 byte
+
+    let arr3 = new ArrayBuffer(a.length); // The buffer has space equal to a.length: 1byte * a.length
+    let arr3_32 = new Uint32Array(arr3); // 4 byte
+    
+    arr1_8[0] = 0x37;
+
+    for (let i = 0; i < a.length; i++) {
+        arr2_8[i] = a.charCodeAt(i);
+    };
+    
+    arr1_8.forEach((_, index, array) => {
+        if (index == 0) return;
+        array[index] = ((((array[index - 1] ^ 0x96) + 0xDD) ^ 0xA4) + 0x96) ^ 0xC8;
+    });
+    
+    arr2_32.forEach((_, index) => {
+        arr3_32[index] = (((_ + arr1_32[index]) ^ reverseBits(arr1_32[index]) ) +  reverseBits(arr1_32[index])) ^ arr1_32[index];
+    });
+
+    return new Uint8Array(arr3);
+};
+</pre>
+</div>
+
+The encrypt function is most important. Actually I think if you understand all this logic of function you can think of it as solved 80%.
+
+
+### My Solution Code
+
+<div style="background-color: rgb(33, 37, 41); padding: 1em;">
+<pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
+arr3_32 = []
+
+def byte2dword(a1):
+&nbsp;&nbsp;&nbsp;&nbsp;ret = []
+&nbsp;&nbsp;&nbsp;&nbsp;data = [a1[i:i + 4] for i in range(0, len(a1), 4)]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for dword in data:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rev_dword = dword[::-1]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hex_strings = '0x'+''.join([hex(byte)[2:] for byte in rev_dword])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ret.append(int(hex_strings, 16))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return ret
+
+def dword2byte(a1):
+&nbsp;&nbsp;&nbsp;&nbsp;ret = []<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for data in a1:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;word = [data[i:i + 2] for i in range(0, len(data), 2)][1:][::-1]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ret += [chr(int('0x' + byte, 16)) for byte in word]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return ''.join(ret)
+
+enc_data = [164, 72, 70, 191, 200, 156, 172, 79, 52, 69, 146, 160, 106, 90, 169, 94, 108, 204, 156, 47, 106, 122, 198, 5, 206, 52, 249, 21, 70, 125, 172, 196, 96, 156, 186, 190, 81, 97, 105, 119]
+enc_data = byte2dword(enc_data)
+arr3_32 = [982366263,3203513355,3002446079,1983493363,1258145895,1323420795,1122353263,1189725283,2595035223,512826411]
+enc1_arr3_32 = [990342231, -801271939, -15880371, 1737936439, 1930026921, 1863959481, 2063717281, 1662110641, -367479463, 445059375]
+
+&#35; given values of B, C, D
+B = 10
+C = 20
+D = 30
+
+&#35; Calculation to find A
+A = (((D ^ B) - C) ^ C) - B
+D = (((A + B) ^ C) + C) ^ B
+
+&#35; print A
+print(A)
+print(D)
+
+&#35; arr3_32[index] = (((_ + arr1_32[index]) ^ enc1(arr1_32[index]) ) +  enc1(arr1_32[index])) ^ arr1_32[index];
+flag_32 = []
+
+for i in range(len(arr3_32)):
+    rev = (((enc_data[i] ^ arr3_32[i]) - enc1_arr3_32[i]) ^ enc1_arr3_32[i]) - arr3_32[i]
+
+    if rev < 0:
+        rev &= 0xffffffff # unsigned shift 
+
+    flag_32.append(hex(rev))
+
+print("FALG:", dword2byte(flag_32))
 </pre>
 </div>
