@@ -11,7 +11,7 @@ Hello readers!
 
 In the second half of 2023, I participated in the 27th Hacking Camp held in Korea.
 
-Hacking Camp is a non-profit organization so by holding Hacking Camp, security dreamers can get great opportunities in Korea every year.
+Hacking Camp is a non-profit organization and by holding Hacking Camp, people dreaming of working in cyber security can get great opportunities in Korea every year.
 
 I was the leader of team "어디에도(Everywhere)" so, I took it seriously during Hacking Camp.
 
@@ -29,8 +29,8 @@ var _cs=["\x42\x79","\x70\x6f\x70","\x6d\x61\x70","\x6f\x64","\x65\x41","\x64\x7
 </pre>
 </div>
 
-While I was thinking about how to analyze the code, I came up a website called "beautifier.io". It improves the readability of input JavaScript code.
-I inputted JavaScript code on the site. The website improved the code's readability, and I enhanced it further based on my own preferences. The code of below is the result from that
+While I was thinking about how to analyze the code, I came up with a website called "beautifier.io". It improves the readability of input JavaScript code.
+I inputted JavaScript code on the site. The website improved the code's readability, and I enhanced it further based on my own preferences. The code below is the result from that
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
@@ -92,16 +92,16 @@ console.log(encrypt(text).map((element, index) => {
 </pre>
 </div>
 
-Thereafter, I understood it step by step and then I realized that the "encrypt" function is core of this logic after that.
+Thereafter, I understood it step by step and then after that I realized that the "encrypt" function is the core of this program
 
 ### What is ArrayBuffer in JavaScript?
-I realized that I  must needed to understand about ArrayBuffer of JavaScript and Uint(n)Array concepts in order to solving this challenge.
+I realized that I had needed to understand ArrayBuffer in JavaScript and Uint(n)Array concepts in order to solve this challenge.
 
 JavaScript provides methods for directly manipulating ArrayBuffer. These methods are mostly used in WebAssembly and Binary Data Processing.
 
 ArrayBuffer is a low-level binary data buffer in JavaScript. It provides a fixed-length raw memory space that you can use to store and manipulate binary data directly.
 
-Actually, when I opened Chrome’s Developer Tools and entered new ArrayBuffer(8) in the console, a transistor-shaped icon appeared next to the output. click on that icon, it opens the Memory Inspector panel at the bottom, where you can view a memory dump of the object.
+Actually, when I opened Chrome’s Developer Tools and entered new ArrayBuffer(8) in the console, a transistor-shaped icon appeared next to the output. If you click on that icon, it opens the Memory Inspector panel at the bottom, where you can view a memory dump of the object.
 
 <p align="center">
     <img src="/assets/images/hacking-camp-27th-P0R0C3E5S1N9-write-up/arraybuffer_dump.png">
@@ -130,7 +130,7 @@ buf_32[0] = 256; // A 4byte integer can represent 4,294,967,296 values: 0 to 4,2
 </pre>
 </div>
 
-### Explaining the my Improved Code
+### Explaining my Improved Code
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
@@ -184,7 +184,7 @@ const encrypt = (a) => {
 </pre>
 </div>
 
-The encrypt function is most important. Actually I think if you understand all this logic of function you can think of it as solved 80%.
+The encrypt function is the most important function. Actually I think if you understand all the logic of this function you have basically solved 80% of the problem.
 
 <div style="background-color: rgb(33, 37, 41); padding: 1em;">
 <pre style="color: rgb(255, 255, 255); font-size: 1em; text-align: left;">
@@ -363,7 +363,7 @@ FLAG: HCAMP{40670b0248b9b931d3a6fe2d225dbb850c999ae7}
 </div>
 
 ### In Conclusion
-Hacking Camp has been a truly valuable experience for me upon reflection. Fortunately, our team won first place in the Hacking Camp CTF. I'm deeply grateful to my teammates from everywhere(어디에도)
+when thinking back to the Hacking Camp, I'm really gratefull for the truly valuable experience for me upon reflection. Fortunately, our team won first place in the Hacking Camp CTF. I'm deeply grateful to my teammates from everywhere(어디에도)
 
 As I close out this post, I want to mention that this was my first time writing an article in English. It was a new and meaningful experience for me.
 
