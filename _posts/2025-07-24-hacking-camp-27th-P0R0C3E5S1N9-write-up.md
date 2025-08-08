@@ -363,7 +363,7 @@ FLAG: HCAMP{40670b0248b9b931d3a6fe2d225dbb850c999ae7}
 </div>
 
 ### In Conclusion
-when thinking back to the Hacking Camp, I'm really gratefull for the truly valuable experience for me upon reflection. Fortunately, our team won first place in the Hacking Camp CTF. I'm deeply grateful to my teammates from everywhere(어디에도)
+When thinking back to the Hacking Camp, I'm really gratefull for the truly valuable experience for me upon reflection. Fortunately, our team won first place in the Hacking Camp CTF. I'm deeply grateful to my teammates from everywhere(어디에도)
 
 As I close out this post, I want to mention that this was my first time writing an article in English. It was a new and meaningful experience for me.
 
