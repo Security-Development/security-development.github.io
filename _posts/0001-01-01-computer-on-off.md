@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "컴퓨터가 생명을 얻는 방법(작성중)"
+title: "컴퓨터가 생명을 얻는 방법(작성중)"
 author: "SeungYong Lee"
 categories: [principle]
 tags: [hardware]

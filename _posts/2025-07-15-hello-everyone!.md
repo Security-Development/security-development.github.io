@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Hello, Everyone!"
+title: "Hello, Everyone!"
 author: "SeungYong Lee"
 categories: [misc]
 tags: [introduction]

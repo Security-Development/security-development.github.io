@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "v8!, 넌 도대체 뭐니?"
+title: "v8!, 넌 도대체 뭐니?"
 author: "SeungYong Lee"
 categories: [principle]
 tags: [v8]
