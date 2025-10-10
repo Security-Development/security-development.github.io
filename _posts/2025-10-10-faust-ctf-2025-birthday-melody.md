@@ -299,7 +299,7 @@ tar -xzf libgcc-*.apk -C alpine-libs
 
 /cgi-bin/write.cgi 엔드포인트 요청에 JSON 데이터(length, hertz, data, metadata, ..)가 어떻게 전달되는지 정적분석을 했습니다.
 
-데이터를 전달받아 데이터 섹션에 존재하는 전역변수 data[start + i ] 에 값을 씁니다. 이때 i 는 인덱스이고, start 값은 조작해서 전달 가능한 데이터 입니다. 게다가 start 값은 end 값 보다 작은지만 검사하고 Integer Overflow 관련 검사 로직이 존재하지 않기 때문에, 우리는 전역 변수 data 의 주소를 기준으로 오프셋을 조정하여, 조정된 주소에 연산된 accum 변수 2 바이트 값을 더할 수 있습니다. 
+데이터를 전달받아 데이터 섹션에 존재하는 전역변수 data[start + i ] 에 값을 씁니다. 이때 i 는 인덱스이고, start 값은 조작해서 전달 가능한 데이터 입니다. 게다가 start 값은 end 값 보다 작은지만 검사하고 Integer Overflow/Underflow 관련 검사 로직이 존재하지 않기 때문에, 우리는 전역 변수 data 의 주소를 기준으로 오프셋을 조정하여, 조정된 주소에 연산된 accum 변수 2 바이트 값을 더할 수 있습니다. 
 
 <figure style="text-align: center">
     <img src="/assets/images/birthday-melody-write-up/genwav-cgi-readaility-up.png"/>
@@ -474,4 +474,5 @@ p.interactive()
 그리고 방향성을 못잡고 큰 벽 처럼 느껴지는 문제라도, 집요하게 잡고 시간을 들인다면, 결국 무너뜨릴 수 있다는 자신감 또한 얻었습니다.
 
 끝으로, Faust 2025 CTF 에서 출제된 Birthday-Melody 문제의 저의 write-up 을 봐주신 여러분께 진심으로 감사드립니다.
+
 
