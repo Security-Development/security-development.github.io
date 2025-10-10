@@ -73,7 +73,7 @@ docker load -i ./docker-images.tar
 ```
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/check_docker_image.png"/>
+    <img src="/assets/images/birthday-melody-write-up/check_docker_image.png"/>
     <figcaption>
         로드된 Birthday-Melody 도커 이미지
     </figcaption>
@@ -85,7 +85,7 @@ docker compose up --build
 ```
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/build_docker_image.png"/>
+    <img src="/assets/images/birthday-melody-write-up/build_docker_image.png"/>
     <figcaption>
         실행된 Birthday-Melody 도커 이미지
     </figcaption>
@@ -136,7 +136,7 @@ x86_64 바이너리며, No RELRO 이기 때문에, GOT Overwrite 공격이 가�
 파일 구조에서 얻었던 추측한 정보에서 알 수 있듯, 계정과 관련된 Interaction 이 존재하는 것을 확인할 수 있었습니다.
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/birthday-melody-web-main-page.png"/>
+    <img src="/assets/images/birthday-melody-write-up/birthday-melody-web-main-page.png"/>
     <figcaption>
         Birthday-Melody 웹 메인 페이지
     </figcaption>
@@ -146,7 +146,7 @@ x86_64 바이너리며, No RELRO 이기 때문에, GOT Overwrite 공격이 가�
 따라서, cgi/account.cgi 바이너리를 분석하면 회원가입과 관련된 취약점을 발견할 수 있지 않을까라는 기대감으로 account.cgi 를 분석하기로 결정했습니다.
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/birthday-melody-web-register-cgi.png"/>
+    <img src="/assets/images/birthday-melody-write-up/birthday-melody-web-register-cgi.png"/>
     <figcaption>
         Birthday-Melody 회원가입 시도
     </figcaption>
@@ -155,7 +155,7 @@ x86_64 바이너리며, No RELRO 이기 때문에, GOT Overwrite 공격이 가�
 유저 이름에 "/" 가 있는지 확인 후, 존재한다면 "Invalid user 'UserName'" 을 응답합니다.
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/account-cgi-filter-check.png"/>
+    <img src="/assets/images/birthday-melody-write-up/account-cgi-filter-check.png"/>
     <figcaption>
         account.cgi 내 유저 이름 필터링
     </figcaption>
@@ -175,7 +175,7 @@ Server: lighttpd/1.4.82
 Set-Cookie 관련 로직은 account.cgi main 함수 끝 부분에서 확인 할 수 있는데, 회원가입한 username 이 그대로 응답 창에 들어가게 되고, "/" 말고 필터링 해주는 것이 없기 때문에 Header Injection 이 가능할 수 있다고 생각했습니다.
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/cookie_injectable.png"/>
+    <img src="/assets/images/birthday-melody-write-up/cookie_injectable.png"/>
     <figcaption>
         account.cgi Set-Cookie 로직
     </figcaption>
@@ -187,7 +187,7 @@ Set-Cookie 관련 로직은 account.cgi main 함수 끝 부분에서 확인 할 
 로그인 후, Melody 를 추가할 수 있는 기능이 존재했습니다.
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/melody-add.png"/>
+    <img src="/assets/images/birthday-melody-write-up/melody-add.png"/>
     <figcaption>
         Melody 추가 기능 확인
     </figcaption>
@@ -196,7 +196,7 @@ Set-Cookie 관련 로직은 account.cgi main 함수 끝 부분에서 확인 할 
 "+add" 버튼을 누르자 MetaData 와 Notes 를 만들고 저장할 수 있는 UI 가 표시되었습니다.
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/melody-add-ui.png"/>
+    <img src="/assets/images/birthday-melody-write-up/melody-add-ui.png"/>
     <figcaption>
         Melody 추가 UI
     </figcaption>
@@ -240,7 +240,7 @@ sec-ch-ua-platform: "Windows"
 여기서, 경로를 조작한 임의의 파일 생성이 가능할 것 같았지만, name 에 "/" 가 포함되었는지 검사하기 때문에 불가능하다는 것을 알았습니다.
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/write-cgi-filter.png"/>
+    <img src="/assets/images/birthday-melody-write-up/write-cgi-filter.png"/>
     <figcaption>
         write.cgi "/" 검사
     </figcaption>
@@ -287,7 +287,7 @@ tar -xzf libgcc-*.apk -C alpine-libs
 
 정상 실행되는 CGI 바이너리
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/cgi_execute.png"/>
+    <img src="/assets/images/birthday-melody-write-up/cgi_execute.png"/>
     <figcaption>
         genwav.cgi 실행
     </figcaption>
@@ -302,7 +302,7 @@ tar -xzf libgcc-*.apk -C alpine-libs
 데이터를 전달받아 데이터 섹션에 존재하는 전역변수 data[start + i ] 에 값을 씁니다. 이때 i 는 인덱스이고, start 값은 조작해서 전달 가능한 데이터 입니다. 게다가 start 값은 end 값 보다 작은지만 검사하고 Integer Overflow 관련 검사 로직이 존재하지 않기 때문에, 우리는 전역 변수 data 의 주소를 기준으로 오프셋을 조정하여, 조정된 주소에 연산된 accum 변수 2 바이트 값을 더할 수 있습니다. 
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/genwav-cgi-readaility-up.png"/>
+    <img src="/assets/images/birthday-melody-write-up/genwav-cgi-readaility-up.png"/>
     <figcaption>
         genwav.cgi main 함수 내 데이터 전달 받는 곳 가독성 증진 작업 후
     </figcaption>
@@ -311,7 +311,7 @@ tar -xzf libgcc-*.apk -C alpine-libs
 start 값을 조정해보니 성공적으로 GOT 주소를 가리킬 수 있었습니다.
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/genwav-cgi-got-address-check.png"/>
+    <img src="/assets/images/birthday-melody-write-up/genwav-cgi-got-address-check.png"/>
     <figcaption>
         동적 디버깅을 통한 GOT 영역에 있는 malloc 주소 확인
     </figcaption>
@@ -365,7 +365,7 @@ print("calculated amplitude:", amp)
 이상하게 들어가는건 수동으로 조절해가면서 하니 accum 값에 원하는 값을 넣을 수 있게되었습니다. 이제 GOT 에 존재하는 함수 들중 어떤 걸 무엇으로 조작해서 무언가를 할 수 있을지 분석해보았습니다. genwav.cgi+0x5cc1 에서 전역변수 data 내 값을 복사한 data_dup 을 첫 번째 인자로 호출하는 free 함수 발견했습니다.
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/find_got_overwrite_point.png"/>
+    <img src="/assets/images/birthday-melody-write-up/find_got_overwrite_point.png"/>
     <figcaption>
         data_dup 을 첫 번째인자로 free 함수 호출 확인
     </figcaption>
@@ -394,7 +394,7 @@ print("calculated amplitude:", amp)
 이를 토대로 익스플로잇 코드를 작성했고, 실행한 결과 성공적으로 명령어 실행이 가능했으며, 쉘 획득이 가능했습니다.
 
 <figure style="text-align: center">
-    <img src="./assets/images/birthday-melody-write-up/get-shell.png"/>
+    <img src="/assets/images/birthday-melody-write-up/get-shell.png"/>
     <figcaption>
         명령어 실행을 통한 쉘 획득
     </figcaption>
@@ -474,3 +474,4 @@ p.interactive()
 그리고 방향성을 못잡고 큰 벽 처럼 느껴지는 문제라도, 집요하게 잡고 시간을 들인다면, 결국 무너뜨릴 수 있다는 자신감 또한 얻었습니다.
 
 끝으로, Faust 2025 CTF 에서 출제된 Birthday-Melody 문제의 저의 write-up 을 봐주신 여러분께 진심으로 감사드립니다.
+
