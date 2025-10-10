@@ -9,7 +9,7 @@ image: assets/images/birthday-melody-write-up/genwav-cgi-got-address-check.png
 
 독자 여러분, 안녕하세요!
 
-이번에 V-Sector 라는 팀원으로 Faust 2025 CTF 를 참여하게 되었습니다.
+이번에 V-Sector 팀의 멤버로 Faust 2025 CTF 를 참여하게 되었습니다.
 
 이 팀의 구성원들에게 팀 활동의 강제성을 부여하지 않고, 자유롭게 참여할 자율적 의사를 존중하고 실력이 출중한 사람들이 모여 한 팀이 되어 대회에 참가하고 한층더 성장 할 수 있는 휼륭한 환경을 갖추고 있습니다.
 
@@ -474,6 +474,7 @@ p.interactive()
 그리고 방향성을 못잡고 큰 벽 처럼 느껴지는 문제라도, 집요하게 잡고 시간을 들인다면, 결국 무너뜨릴 수 있다는 자신감 또한 얻었습니다.
 
 끝으로, Faust 2025 CTF 에서 출제된 Birthday-Melody 문제의 저의 write-up 을 봐주신 여러분께 진심으로 감사드립니다.
+
 
 
 
