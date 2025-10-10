@@ -43,8 +43,9 @@ imageshadow: true
 > Affiliated with the NWWTHW team, JBU 2022 CTF 8th(Encouragement Award)<br/>
 > Affiliated with the Stealien team, Hack The Box Business CTF 2023 18th<br/>
 > Affiliated with the budaejjigae team, Defcon Qualifier 2023 24th<br/>
-> Affiliated with the 어디에도 team, HackingCamp 27th 2023 CTF 1st
+> Affiliated with the 어디에도 team, HackingCamp 27th 2023 CTF 1st<br/> 
 > Affiliated with the Stealien team, Hack The Box Business CTF 2024 82th<br/>
+> Affiliated with the V-Sector team, Faust Attack-Defense CTF 2025 31th<br/>
 
 **CTF Challenge Creation Experience**
 > **ccunictf 2025**<br/>
