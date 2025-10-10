@@ -79,7 +79,7 @@ docker load -i ./docker-images.tar
     </figcaption>
 </figure>
 
-#### 도커 이미지 빌드 및 실행
+도커 이미지 빌드 및 실행
 ```
 docker compose up --build
 ```
@@ -474,6 +474,7 @@ p.interactive()
 그리고 방향성을 못잡고 큰 벽 처럼 느껴지는 문제라도, 집요하게 잡고 시간을 들인다면, 결국 무너뜨릴 수 있다는 자신감 또한 얻었습니다.
 
 끝으로, Faust 2025 CTF 에서 출제된 Birthday-Melody 문제의 저의 write-up 을 봐주신 여러분께 진심으로 감사드립니다.
+
 
 
 
