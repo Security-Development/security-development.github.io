@@ -15,6 +15,10 @@ $enable-rounded: false;
 @import 'bootstrap/bootstrap';
 @import 'stars';
 
+pre {
+	background-color: rgb(33, 37, 41); 
+	padding: 1em;
+}
 
 // general
 body, input, button, select, optgroup, textarea {   
